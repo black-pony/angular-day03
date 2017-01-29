@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+    <h3>原始数组</h3>
+    <ul>
+        <li ng-repeat="item in arr">{{item.name}} -- {{item.age}}</li>
+    </ul>
+    <hr>
+    <h3>匹配属性值中含有2的</h3>
+    <ul>
+        <li ng-repeat="item in arr | filter : '2' ">{{item.name}} -- {{item.age}}</li>
+    </ul>
+    <hr>
+    <h3>匹配name属性值中含有2的</h3>
+    <ul>
+        <li ng-repeat="item in arr | filter : {name:'2'} ">{{item.name}} -- {{item.age}}</li>
+    </ul>
+    <hr>
+    <h3>匹配年龄大于16的</h3>
+    <ul>
+        <li ng-repeat="item in arr | filter : myFn ">{{item.name}} -- {{item.age}}</li>
+    </ul>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('myController',function($scope){
+            $scope.arr = [{name:'lily2',age:17},{name:'lucy',age:13},{name:'tomy',age:25},{name:'jack',age:16}];
+            $scope.myFn = function(item){return item.age > 14};// sort filter
+        });
+    </script>
+</body>
+</html>

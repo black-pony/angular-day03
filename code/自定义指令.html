@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+    <my-ele title="我是标题1" content="我是内容1"></my-ele>
+   <my-ele title="我是标题2" content="我是内容2"></my-ele>
+   <my-ele title="我是标题3" content="我是内容3"></my-ele>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script type="text/ng-template" id="tpl">
+         <div>
+            <h3>{{我是title表达式,我要去当前的自定义指令里面找去哪里得到值}}</h3>
+            <p>{{content}}</p>
+        </div>
+    </script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('myController',function($scope){
+            // $scope.title = '我是标题1';
+            // $scope.content = '我是内容1';
+        });
+        myApp.directive('myEle',function(){
+            return {
+                templateUrl:'tpl',
+                scope:{
+                    title:"@去自定义指令使用的地方去找title属性",
+                    content:"@content"
+                }
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body ng-app="filterApp" ng-controller="filterController">
+<input type="text" ng-model="search">
+<!-- filter 需要一个参数，这个参数是进行过滤的参数-->
+<p ng-repeat="item in tasks | filter: true">
+    {{item.id}},{{item.name}},{{item.completed}}
+</p>
+<h1>参数可以是object对象</h1>
+<!-- 参数可以是一个object对象 -->
+<p ng-repeat="item in tasks | filter: {completed:false}">
+    {{item.id}},{{item.name}},{{item.completed}}
+</p>
+    <script src="node_modules/angular/angular.js"></script>
+    <script>
+        // 1.创建模块
+        var app = angular.module('filterApp',[]);
+
+        // 2.创建控制器
+        app.controller('filterController',['$scope',function($scope){
+            $scope.search='';
+            var tasks=[
+        {id:1,name:'吃饭',completed:false},
+        {id:2,name:'睡觉',completed:true},
+        {id:3,name:'学习我是true吗',completed:false},
+        {id:4,name:'休息我就是false',completed:true},
+        {id:5,name:'打球',completed:true},
+       ];
+       $scope.tasks=tasks;
+        }])
+    </script>
+</body>
+</html>

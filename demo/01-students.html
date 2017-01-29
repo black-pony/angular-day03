@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由-显示学生信息</title>
+</head>
+<body ng-app="myApp">
+<div class="ng-view"></div>
+<script id="script_view" type="text/ng-template">
+    <strong>{{stu.id}},{{stu.name}},{{stu.grade}}</strong>
+</script>
+<script src="node_modules/angular/angular.js"></script>
+<script src="node_modules/angular-route/angular-route.min.js"></script>
+<script>
+    //1.创建模块，并引用模块
+    var app = angular.module('myApp', ['ngRoute']);
+    // 2.//配置路由
+    app.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/students/:name', {
+                    controller: 'studentsController',
+                    templateUrl: 'script_view'
+                }
+        )//.when('/students/lisi',{})
+    }]);
+    // 3.创建控制器
+    app.controller('studentsController', ['$scope', '$routeParams','$route','$location', function ($scope, $routeParams,$route,$location) {
+        console.log($routeParams)
+        $scope.students = {
+            zhangsan: {id: 0, name: "张三", grade: "一年级"},
+            lisi: {id: 1, name: "李四", grade: "一年级"},
+            xiaobai: {id: 2, name: "小白", grade: "一年级"},
+            wangwu: {id: 3, name: "王五", grade: "一年级"},
+            zhaosi: {id: 4, name: "赵四", grade: "一年级"},
+        }
+        $scope.stu=$scope.students[$routeParams.name];
+        if($routeParams.name=="aa"){
+            $route.updateParams({name:'lisi'})
+          //  $location.url('/lisi')
+        }
+    }]);
+</script>
+</body>
+</html>

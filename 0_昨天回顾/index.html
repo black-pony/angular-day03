@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="btn" value="按钮">
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script>
+        //var oBtn = angular.element(document.getElementById('btn'));//获取jqLite对象
+        var oBtn = angular.element('#btn');//前提是我们引入了jquery库，这个时候angular.element===$===jQuery
+        console.log(oBtn);
+    </script>
+</body>
+</html>

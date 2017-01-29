@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+    <my-date time-str='1484051421331'></my-date>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('myController',function($scope){
+
+        });
+        myApp.directive('myDate',function(){
+            return {
+                template:'<h3>{{datetime | date : "yyyy年MM月dd日"}}</h3>',
+                scope:{
+
+                },
+                link:function(scope,element,attributes){
+                    //  console.log(attributes);
+                     scope.a = 100;
+                    scope.datetime = attributes.timeStr - 0;
+                    // element.on('click',function(){
+                    //     alert(111)
+                    // });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

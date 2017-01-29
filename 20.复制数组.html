@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [1,2,3];
+        var temp = [2,3];
+        var arr1 = arr;
+        arr.length = 0;//清空数组 这里不能用arr=[]
+        Array.prototype.push.apply(arr,temp);
+        console.log(arr === arr1);
+        console.log(arr);
+
+    </script>
+</body>
+</html>

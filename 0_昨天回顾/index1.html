@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-app="myApp" ng-controller="myController as obj">
+    <input type="button" id="btn" value="按钮">
+    <input type="text" ng-model="abc">
+    {{str}}
+    <div ng-bind-html="str"></div>
+    <p ng-bind="abc"  class="ng-cloak"></p>
+    {{time | dateFormat:'yyyy年 MM月 dd日 hh:mm:ss'}} --> 2017年1月9日
+    <ul>
+        <li ng-repeat="i in [2,3,4,5,6]">{{i}}</li>
+    </ul>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/ng-sanitize/index.js"></script>
+    <script>
+        var myApp = angular.module('myApp',['ngSanitize']);
+        myApp.controller('myController',function($scope){
+            $scope.name = 'itcast';
+            $scope.str = '<h1>abc</h1>';
+        });
+
+        // myApp.controller('myController',function(){
+        //     this.name = 'itcast';
+        // });
+
+        // myApp.controller('myController',['$scope','$log',function($scope,$log){
+
+        // }]);
+
+
+
+
+        // 我需要什么，我就声明就行了
+        // angular.module('笔记本',['内存','硬盘'])
+
+        // oBtn.onclick = function(event){
+
+        // }
+
+        // var gulp = require('gulp');
+    </script>
+</body>
+</html>

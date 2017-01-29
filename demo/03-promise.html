@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+
+<body>
+    <script>
+    function loadData(say) {
+        return new Promise(function(reslove, reject) {
+            setTimeout(function() {
+                var data = new Date();
+                console.log(say);
+                reslove(data);
+            }, 1000);
+        })
+    }
+
+    loadData('我是中国人，我爱自己的祖国。')
+        .then(function(data) {
+            console.log(data);
+        }).then(function() {
+            console.log(123333);
+        });
+
+
+    function loadData002(say, callback) {
+        console.log(say);
+        var data = new Date();
+        callback(data);
+    }
+
+    loadData002(function(data, callback) {
+        console.log('我是中国人，我爱自己的祖国。');
+        loadData002(function(data, callback) {
+            console.log('我是中国人，我爱自己的祖国。');
+            loadData002(function(data, callback) {
+                console.log('我是中国人，我爱自己的祖国。');
+                loadData002(function(data, callback) {
+                    console.log('我是中国人，我爱自己的祖国。');
+                    loadData002(function(data, callback) {
+                        console.log('我是中国人，我爱自己的祖国。');
+                        loadData002(function(data, callback) {
+                            console.log('我是中国人，我爱自己的祖国。');
+                            loadData002(function(data, callback) {
+                                console.log('我是中国人，我爱自己的祖国。');
+                                loadData002(function(data, callback) {
+                                    console.log('我是中国人，我爱自己的祖国。');
+
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>

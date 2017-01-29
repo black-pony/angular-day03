@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-app="myApp">
+    <!--通过一个ng-view的指令，指定模板字符串插入的位置-->
+    <div ng-view></div>
+    <script src="node_modules/angular/angular.js"></script>
+    <!--第一步、去安装angular-route 引入angular-route -->
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script type="text/ng-template">
+        <h3>学挖掘机，到蓝翔</h3>
+    </script>
+    <script>
+        //创建模块
+        var myApp = angular.module('myApp',['ngRoute']);
+
+        // 创建一些规则
+        //有一些参数：类似controller的第二个参数
+        // $scope $window $log $location 
+        //angular项目启动的时候 --> 看一下当前的hash值是多少 --> config里面有没有配置 
+        myApp.config(['$routeProvider',function($routeProvider,$locationProvider){
+            //when方法，第一个参数，是url中锚点值
+            //第二个参数是一个object对象
+            
+            $routeProvider
+            .when('/school/frontend',{
+                template:'<h3>学前端，到传智</h3>'
+            })
+            .when('/school/cooker',{
+                template:'<h3>学厨师，到新东方</h3>'
+            })
+            .when('/school/english',{
+                template:'<h3>学英语，到新东方</h3>'
+            })
+            .when('/school/machine',{
+                templateUrl:'tpl'
+            });
+        }]);
+
+
+
+        // angular.directive('myTab',function(){
+        //     return {
+        //         template:
+        //         templateUrl:
+        //         scope,
+        //         link,
+        //         replace,
+        //         translcude
+        //     }
+        // });
+    </script>
+</body>
+</html>

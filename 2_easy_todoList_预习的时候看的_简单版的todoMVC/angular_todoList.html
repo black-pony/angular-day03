@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搭建好angular项目的结构</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+        }
+        .delete_check{
+            color: orangered;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myController"> 
+    请输入事项：<input type="text" placeholder="请输入事项" id="newItem" >
+    <br>
+    全选：<input type="checkbox" id="all">
+    <ul id="list">
+        
+    </ul>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('myController',function($scope){
+            
+        });
+    </script>
+</body>
+</html>

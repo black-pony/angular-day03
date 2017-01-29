@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body ng-app="myApp">
+    <hello hello-style="color-red">hello</hello>
+    <hello hello-style="color-blue">hi</hello>
+    <script src="node_modules/angular/angular.js"></script>
+    <script>
+    var app = angular.module('myApp', []);
+    app.directive('hello', [function() {
+        return {
+            restrict: 'E',
+            template: '<div ng-transclude>hello my friend！</div>',
+            transclude: true
+        };
+    }]);
+    </script>
+</body>
+
+</html>

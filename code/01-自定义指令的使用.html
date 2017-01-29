@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body ng-app="myApp">
+    <div my-btn test="btn-primary">注册</div>
+    <my-btn test="btn-success">登陆</my-btn>
+    <my-ele title="itcast"></my-ele>
+
+    
+
+
+
+    <div class="my-btn"></div>
+    <!-- directive:my-btn -->
+    <script id="tpl" type="text/ng-template">
+        <!-- <button ng-transclude class="btn {{mytest}}">注册</button> -->
+        <button ng-transclude class="btn {{test}}">注册</button>
+        <p>{{name}}</p>
+
+    </script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script>
+        // 1.创建模块
+        var app = angular.module('myApp',[]);
+
+        // 2.创建自定义指令
+        // 第一个参数是指令的名字: 必须是驼峰命名法
+        // 第二个参数是function
+        app.directive('myBtn',[function(){
+            var obj={
+                //template:'<button>我是button</button>',
+                //指向了一个文件路径
+                //templateUrl:'./view.html'
+                //也可以指向一个script标签的id,注意:要设置type="text/ng-template"
+                templateUrl:'tpl',
+                // 限制指令的使用方式
+                restrict:'ECAM' ,// E:element ,C:class,A:Attribute,M:Comment
+                //replace:true ,// 需要一个布尔值,为true,替换自定义指令所在的标签
+                transclude: true, //转置,需要一个布尔值 ，为true把自定义指令所在的标签的innertHTML值添加到模板字符串
+                // scope:{
+                //     mytest:'@test',// 需要给一个值，以@开头@后的值是自定义指令所在标签的属性名，最终可以在模板字符串中使用表达来获取相应的属性值.
+                //     test:'@'// 这是上面方式的简写
+                // },
+                // 指向了一个function
+                link:function(scope,element,attributes){
+                    // scope:类似控制器中的$scope
+                    // element:是一个jqLite对象,是自定义指令所在标签的jqLite对象
+                    // attributes:是自定义指令所在标签的所以属性的集合
+                    element.on('click',function(){
+                        console.log('你点击我了');
+                        console.log(this);
+                        console.log(attributes);
+                    });
+                    //angular.element
+                    scope.name="小明";
+                }
+            }
+            return obj;
+        }])
+    </script>
+</body>
+</html>

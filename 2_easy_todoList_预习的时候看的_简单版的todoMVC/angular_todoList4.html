@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置任务是否完成</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+        }
+        .delete_check{
+            color: orangered;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myController"> 
+    请输入事项：<input type="text" placeholder="请输入事项" id="newItem" ng-keypress="addNewItem($event)" ng-model="newItem">
+    <br>
+    全选：<input type="checkbox" id="all">
+    <ul id="list">
+        <li ng-repeat="item in arr"><input type='checkbox' class='done_check' ng-model="item.isDone"><span ng-class="{done:item.isDone}">{{item.itemName}}</span><span class='delete_check'>X</span></li>
+    </ul>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('myController',function($scope){
+            $scope.arr = [
+                {itemName:'吃饭',isDone:true},
+                {itemName:'睡觉',isDone:false}
+            ];
+
+            $scope.addNewItem = function(e){
+                console.log(e);
+                if(e.code === 'Enter'){
+                    console.log(3);
+                    $scope.arr.push({itemName:$scope.newItem});
+                    $scope.newItem = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

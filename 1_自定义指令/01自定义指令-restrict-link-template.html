@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="myApp">
+
+  <!-- <div hello>我是自定义指令的A</div> -->
+  <!-- <hello></hello> -->
+  <!-- <div class="hello">hello</div> -->
+
+  <!-- directive:hello -->
+
+
+  <script src="node_modules/angular/angular.js"></script>
+  <script>
+    var app = angular.module('myApp',[])
+    .directive('hello', [function () {
+      //自定义指令有一个默认值
+      
+      // return {
+      //   restrict: 'A',
+      //   link: function (scope,element,attr) {
+      //     alert('I am Attr')
+      //   }
+      // }
+
+      // return {
+      //   restrict:'C',
+      //   template: '<p>我是class</p>'
+      // }
+
+      // return {
+      //   restrict:'E',
+      //   template: '<p>我是Element</p>'
+      // }
+
+      return {
+        restrict:'M',
+        link: function (scope,element,attr) {
+          alert('commet')
+        }
+      }
+    }]);
+  </script>
+</body>
+</html>
+
+
+
+tempalte
+templateUrl
+restrict 指令有四种形式 ECMA
+replace
+transclude
+scope
+link
+
+
+<my-ele>abc</my-ele>
+
+<script type="text/ng-template">
+  <h1 ng-transclude></h1>
+</script>
+
+

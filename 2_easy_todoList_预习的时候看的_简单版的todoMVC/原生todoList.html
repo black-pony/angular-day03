@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+        }
+        .delete_check{
+            color: orangered;
+        }
+    </style>
+</head>
+<body>
+    请输入事项：<input type="text" placeholder="请输入事项" id="newItem">
+    <br>
+    全选：<input type="checkbox" id="all">
+    <ul id="list"></ul>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function(){
+            $("#newItem").keypress(function(e){
+                if(e.keyCode === 13){
+                    if($(this).val().trim() != ''){
+                        $("#list").append("<li><input type='checkbox' class='done_check'><span>" + $(this).val()+"</span><span class='delete_check'>X</span></li>");
+                        $(this).val("");
+                    }
+                }
+            });
+
+            $("body").on("change",".done_check",function(){
+                // console.log($(this).prop("checked"));
+                if($(this).prop("checked") === true){
+                    $(this).next().addClass("done");
+                }else{
+                    $(this).next().removeClass("done");
+                }
+                
+            });
+
+            $("body").on("click",".delete_check",function(){
+                $(this).parent().remove();
+            });
+
+            $("#all").change(function(){
+                $("#list span").toggleClass("done");
+            });
+        });     
+    </script>
+</body>
+</html>

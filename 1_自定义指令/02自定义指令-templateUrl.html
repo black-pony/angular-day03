@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body ng-app="myApp">
+    <hello>hello</hello>
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script type="text/ng-template" id="tpl">
+        <div>我是通过script标签方式来的</div>
+    </script>
+    <script>
+    var app = angular.module('myApp', []);
+    app.directive('hello', [function() {
+        return {
+            restrict: 'E',
+            // template: '<div>hello my friend！</div>'
+            // templateUrl: './templateUrl.html'
+            templateUrl: 'tpl'
+        };
+    }]);
+    </script>
+</body>
+
+</html>

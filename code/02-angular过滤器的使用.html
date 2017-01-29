@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body ng-app="myApp" ng-controller="demoController">
+    <h1>currency</h1>
+    <!-- 语法在数据模型后面加上 |currency  
+        参数，通过冒号:的方式传递-->
+    <p>{{money | currency :'￥' }}</p>
+
+    <h1>date</h1>
+    <p>{{myDate | date : 'yyyy年MM月dd日 hh:mm:ss'}}</p>
+    <p>{{tmp}}</p>
+
+    <h1>limitTo</h1>
+    <p>{{str |limitTo : 5 : 1}}...</p>
+
+    <h1>json</h1>
+    <pre>{{myJson |json : 6}}</pre>
+
+    <h1>orderBy</h1>
+    <!-- orderyBy:参数是个字符串，表示按照哪个属性排序 -->
+    <p ng-repeat="item in myArr | orderBy :'-age'">
+        {{item.name}},{{item.age}}
+    </p>
+
+
+
+    {{'KFC' | lowercase}}
+   <script src="node_modules/angular/angular.js"></script>
+   <script>
+       // 1.创建模块
+       var app = angular.module('myApp',[]);
+       // 2.创建控制器
+       app.controller('demoController',['$scope','$filter',function($scope,$filter){
+           $scope.money=1234.22;
+           $scope.myDate=1234567891011; // Date.now();
+           $scope.str='我是中国人，我爱自己的祖国。';
+           $scope.myJson={name:'小明',age:23};
+           $scope.myArr=[
+            {name:'小明',age:23},
+            {name:'小明',age:22},
+            {name:'小明',age:18},
+            {name:'小明',age:7},
+            {name:'小明',age:40},
+           ];
+
+           // $filter其实是个方法
+           // 第一个参数:就是过滤器的名字
+           // 会返回一个方法
+           //               + 至少有一个参数(就是使用到的数据)
+           //               + 其他的参数依次是过滤器所使用到的参数
+           var tmp = $filter('date')($scope.myDate,'yyyy年MM月-dd日 HH:mm:ss')
+           $scope.tmp=tmp;
+       }])
+   </script>
+</body>
+</html>

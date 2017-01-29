@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body ng-app="myApp">
+    <hello>hello</hello>
+    <script src="node_modules/angular/angular.js"></script>
+    <script>
+    var app = angular.module('myApp', []);
+    app.directive('hello', [function() {
+        return {
+            restrict: 'E',
+            template: '<div>hello my friend！</div>',
+            replace: true
+        };
+    }]);
+    </script>
+</body>
+
+</html>

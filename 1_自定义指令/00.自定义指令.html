@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-app="myApp">
+
+    <div>
+        <h3>我是标题</h3>
+        <p>我是内容</p>
+    </div>
+
+    <input type="date">
+
+    <div class="ng-cloak"></div>
+
+    <my-title click='100'>我是标题</my-title>
+
+
+    <my-title>我是标题1</my-title>
+
+    
+
+
+    <!--<div my-ele></div>
+    <div class="my-ele"></div>
+    <my-ele></my-ele>-->
+    <!-- directive:my-ele -->
+    <!--<input type="date">-->
+    <!--<tab tilte1="我是标题1" tilte2="我是标题2" tilte3="我是标题3"></tab>-->
+    <!--<div>
+        <h1>我是标题</h1>
+        <p>我是内容</p>
+        <img src="a.jpg" alt="">
+    </div>-->
+    <!--<script id="tpl1" type="text/ng-template">
+        <h1>我是标题</h1>
+        <p>
+            我是内容
+        </p>
+        <img src="a.jpg" alt="">
+    </script>-->
+    <script type="text/ng-template" id="ceshi">
+        <h1 ng-transclude>这里将来放的是从使用的时候传进来的标题title</h1>
+    </script>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        // myApp.directive('myEle',function(){
+        //     return {
+        //         template:'<div><h1>我是标题</h1><p>我是内容</p><img src="a.jpg" alt=""></div>',
+        //         // templateUrl:'./tpl.html'
+        //         restrict:'AECM',//nodeType 9 1 限制这个自定义指令可以怎么玩
+        //         replace:true
+        //     };
+        // });
+
+        myApp.directive('myTitle',function(){
+            return {
+                templateUrl:'ceshi',
+                transclude:true
+                
+            };
+        });
+    </script>
+</body>
+</html>
