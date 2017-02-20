@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+    <!-- money date limitTo uppercase lowercase orderBy  -->
+    {{132233232 | currency : 'Y'}}
+    {{23233232323232 | date : 'yyyy年MM月 H:I:S'}}
+    {{'ceshi' | uppercase | lowercase | uppercase | lowercase | uppercase}}
+
+
+
+    <pre>
+        {{arr | filter : {a:abc} | orderBy : 'price' | json}}
+    </pre>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('myController',function($filter,$scope){
+            // money date limitTo uppercase lowercase orderBy
+            // 语法 ： $filter('格式化过滤器名字')('要处理的数据')
+            // $filter('currency')(132233232,'Y')
+
+            $scope.abc = false;
+
+            $scope.arr = [
+                {name:'apple',price:20,a:true},
+                {name:'orange',price:10,a:false},
+                {name:'cherry',price:30,a:true}
+            ];
+        });
+    </script>
+</body>
+</html>
